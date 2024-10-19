@@ -1,0 +1,26 @@
+Dependency:
+OS: Windows:
+MinGW-w64 (https://www.mingw-w64.org/)
+Make (installed in MinGW-w64)
+CMake (https://cmake.org/download/)
+
+
+How to compile the project:
+
+Instruction 1:
+Run the following script from the root dir:
+./build.bat
+In addition to, you can set as arguments threads count to make the project
+./build.bat 12
+where 12 - is count of threads used for project compilation
+
+Instruction 2:
+Compile project from the terminal:
+mkdir build
+cd build
+cmake .. -G "MinGW Makefiles"
+make
+
+How to start up the project?
+In case of building from the script (instruction 1) open the /app/ or /build/ folder and startup the binary with name app_tech_task_solution.exe
+In case of building from the terminal (instruction 2) open the /build/ folder and startup the binary with name app_tech_task_solution.exe

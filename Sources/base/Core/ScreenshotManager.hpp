@@ -1,0 +1,12 @@
+#ifndef __TECHTASK_SOURCES_BASE_CORE_SCREENSHOTMANAGER_HPP__
+#define __TECHTASK_SOURCES_BASE_CORE_SCREENSHOTMANAGER_HPP__
+
+namespace base::core {
+
+  class ScreenshotManager {
+
+  };
+
+} // base::core
+
+#endif // __TECHTASK_SOURCES_BASE_CORE_SCREENSHOTMANAGER_HPP__

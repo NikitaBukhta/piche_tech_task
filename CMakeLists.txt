@@ -1,0 +1,38 @@
+#--------------------------- MAIN CONFIGURATION ---------------------------#
+
+cmake_minimum_required(VERSION 3.10.0)
+set(PROJECT_NAME app_tech_task_solution)
+project(${PROJECT_NAME})
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED 17)
+
+set(BASE_FOLDER_NAME "base")
+
+if (WIN32)
+  set(OS_FOLDER_NAME "win")
+endif (WIN32)
+
+set(CPP_SOURCE_PATH "Sources")
+set(CPP_SOURCES
+  ${CPP_SOURCE_PATH}/main.cpp
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/InputManager.cpp
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/ScreenshotManager.cpp
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/UserActivityManager.cpp
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/ActivityHandler.cpp
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/InputHandler.cpp
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/ScreenshotHandler.cpp
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Modifiers/ImageModifier.cpp
+)
+
+add_executable(
+  ${PROJECT_NAME}
+  ${CPP_SOURCES}
+)
+
+target_include_directories(
+  ${PROJECT_NAME}
+  PRIVATE
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/
+  ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/
+)

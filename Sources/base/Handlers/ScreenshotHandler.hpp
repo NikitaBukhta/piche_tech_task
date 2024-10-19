@@ -1,0 +1,12 @@
+#ifndef __TECHTASK_SOURCES_BASE_HANDLER_SCREENSHOTHANDLER_HPP__
+#define __TECHTASK_SOURCES_BASE_HANDLER_SCREENSHOTHANDLER_HPP__
+
+namespace base::handlers {
+
+  class ScreenshotHandler {
+
+  };
+
+} // base::handlers
+
+#endif // __TECHTASK_SOURCES_BASE_HANDLER_SCREENSHOTHANDLER_HPP__

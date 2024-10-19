@@ -1,0 +1,12 @@
+#ifndef __TECHTASK_SOURCES_BASE_CORE_USERACTIVITYMANAGER_HPP__
+#define __TECHTASK_SOURCES_BASE_CORE_USERACTIVITYMANAGER_HPP__
+
+namespace base::core {
+
+  class UserActivityManager {
+
+  };
+
+} // base::core
+
+#endif // __TECHTASK_SOURCES_BASE_CORE_USERACTIVITYMANAGER_HPP__
