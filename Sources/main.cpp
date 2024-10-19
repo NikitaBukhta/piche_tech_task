@@ -13,13 +13,14 @@
 
 #include <thread>
 #include <memory>
+#include <string>
 
 void init_logger() {
-  auto console_logger = spdlog::stdout_color_mt(_INIT_LOGGER_NAME_);
-  console_logger->set_pattern("[%Y-%m-%d %H:%M:%S][%l][thread %t][%s][%!] %v");
-  spdlog::set_default_logger(console_logger);
-  console_logger->set_level(spdlog::level::debug);
-  
+  std::string log_pattern = "[%Y-%m-%d %H:%M:%S][%l][thread %t][%s][%!] %v";
+
+  auto file_sink = spdlog::basic_logger_mt(_INIT_LOGGER_NAME_, base::configuration::config::LOG_FILE_NAME);
+  file_sink->set_pattern(log_pattern);
+
   DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_);
   LOG_INFO("logger inited");
 }

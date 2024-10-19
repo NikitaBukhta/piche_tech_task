@@ -4,12 +4,15 @@
 #define _INIT_LOGGER_NAME_ "file_logger_output"
 
 #include <cinttypes>
+#include <string>
 namespace base::configuration::config {
 
 const std::uint8_t ACTIVITY_PERIOD_MINUTES = 5;
 const std::uint8_t SEC_IN_MIN = 60;
 const std::uint16_t MS_IN_SEC = 1000;
 constexpr std::uint32_t ACTIVITY_PERIOD_MS = MS_IN_SEC * SEC_IN_MIN * ACTIVITY_PERIOD_MINUTES;
+
+const std::string LOG_FILE_NAME = "activity_logs.txt";
 
 } // base::configuration::config
 
