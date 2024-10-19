@@ -10,12 +10,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED 17)
 set(BASE_FOLDER_NAME "base")
 
 if (WIN32)
-  set(OS_FOLDER_NAME "win")
+  set(OS_FOLDER_NAME "platform/win")
 endif (WIN32)
 
 set(CPP_SOURCE_PATH "Sources")
 set(CPP_SOURCES
   ${CPP_SOURCE_PATH}/main.cpp
+  # ---- BASE FILES
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/InputManager.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/ScreenshotManager.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/UserActivityManager.cpp
@@ -23,6 +24,9 @@ set(CPP_SOURCES
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/InputHandler.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/ScreenshotHandler.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Modifiers/ImageModifier.cpp
+  # ---- OS SPECIFIC
+  ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/KeyboardInputHandler.cpp
+  ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/MouseInputHandler.cpp
 )
 
 add_executable(
