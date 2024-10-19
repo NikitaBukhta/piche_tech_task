@@ -1,5 +1,8 @@
 #include "KeyboardInputHandler.hpp"
 
+#include "logger.hpp"
+#include "Configuration/config.hpp"
+
 #include <winuser.h>
 #include <memory>
 #include <iostream>
@@ -15,16 +18,32 @@ namespace platform::handlers {
     */
 
   KeyboardInputHandler::~KeyboardInputHandler() {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+    LOG_INFO("called");
+
     unhook();
   }
 
   void KeyboardInputHandler::hook() {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+    LOG_INFO("called");
+
     if (!_hook) {
       _hook = SetWindowsHookEx(WH_KEYBOARD_LL, handle_hook, NULL, 0);
+      if (!_hook) {
+        LOG_ERROR("Cannot to set the hook");
+      }
     }
+    else {
+      LOG_WARNING("hook is already existed");
+    }
+
   }
 
   void KeyboardInputHandler::unhook() {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+    LOG_INFO("called");
+
     UnhookWindowsHookEx(_hook);
     _hook = 0;
   }
@@ -38,6 +57,8 @@ namespace platform::handlers {
     */
 
   KeyboardInputHandler::KeyboardInputHandler() : _hook{ 0 } {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+    LOG_INFO("called");
   }
 
   /*
@@ -57,6 +78,9 @@ namespace platform::handlers {
       */
 
   KeyboardInputHandler& KeyboardInputHandler::instance() {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+    LOG_TRACE("called");
+
     static std::unique_ptr<KeyboardInputHandler> instance(new KeyboardInputHandler);
 
     return *instance;
@@ -70,9 +94,23 @@ namespace platform::handlers {
     * PRIVATE section STARTS;
     */
 
-  LRESULT CALLBACK KeyboardInputHandler::handle_hook(int event_code, WPARAM w_param, LPARAM l_param) {
-    std::cout << __PRETTY_FUNCTION__ << " called" << std::endl;
-    return CallNextHookEx(instance()._hook, event_code, w_param, l_param);
+  LRESULT CALLBACK KeyboardInputHandler::handle_hook(int ncode, WPARAM w_param, LPARAM l_param) {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+
+    if (ncode >= 0) {
+      auto key_info = (KBDLLHOOKSTRUCT*)l_param;
+      if (key_info) {
+        LOG_INFO("Key code = {}; scan code = {}; key status = {}", key_info->vkCode, key_info->scanCode, w_param);
+      }
+      else {
+        LOG_ERROR("Key info could not be read");
+      }
+    }
+    else {
+      LOG_INFO("No info to read");
+    }
+
+    return CallNextHookEx(instance()._hook, ncode, w_param, l_param);
   }
 
   /*

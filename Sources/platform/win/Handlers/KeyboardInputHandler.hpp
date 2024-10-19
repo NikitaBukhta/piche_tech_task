@@ -10,9 +10,9 @@
  * or independed from the class. To keep the OOP princeples and structures, this pattern is used.
  * @version 0.1
  * @date 2024-10-19
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #include "Handlers/InputHandler.hpp"
@@ -39,10 +39,25 @@ namespace platform::handlers {
   private:
     KeyboardInputHandler();
 
-    static LRESULT CALLBACK handle_hook(int event_code, WPARAM w_param, LPARAM l_param);
+    /**
+     * @brief
+     *
+     * @param ncode - should be handled or not
+     * @param w_param - event type
+     * @param l_param - memory address with information about
+     * typedef struct tagKBDLLHOOKSTRUCT {
+     *  DWORD     vkCode;
+     *  DWORD     scanCode;
+     *  DWORD     flags;
+     *  DWORD     time;
+     *  ULONG_PTR dwExtraInfo;
+     * } KBDLLHOOKSTRUCT, *PKBDLLHOOKSTRUCT;
+     * @return LRESULT
+     */
+    static LRESULT CALLBACK handle_hook(int ncode, WPARAM w_param, LPARAM l_param);
 
   private:
-    HHOOK _hook; 
+    HHOOK _hook;
   };
 
 } // platform::handlers

@@ -3,9 +3,13 @@ OS: Windows:
 MinGW-w64 (https://www.mingw-w64.org/)
 Make (installed in MinGW-w64)
 CMake (https://cmake.org/download/)
+  Third Parties:
+    -- spdlog;
 
 
 How to compile the project:
+Install all submodules:
+  git submodule update --init --recursive
 
 Instruction 1:
 Run the following script from the root dir:
@@ -24,3 +28,7 @@ make
 How to start up the project?
 In case of building from the script (instruction 1) open the /app/ or /build/ folder and startup the binary with name app_tech_task_solution.exe
 In case of building from the terminal (instruction 2) open the /build/ folder and startup the binary with name app_tech_task_solution.exe
+
+How to change debug lvl?
+-- Open the ThirdParty/spdlog/include/spdlog/common.h 
+-- find SPDLOG_ACTIVE_LEVEL and set required lvl
