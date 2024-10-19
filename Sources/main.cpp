@@ -1,6 +1,9 @@
 #include "Core/InputManager.hpp"
+#include "Core/UserActivityManager.hpp"
 
 #include "Configuration/config.hpp"
+
+#include "utils/EventHandler.hpp"
 
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/basic_file_sink.h"
@@ -9,6 +12,7 @@
 #include "logger.hpp"
 
 #include <thread>
+#include <memory>
 
 void init_logger() {
   auto console_logger = spdlog::stdout_color_mt(_INIT_LOGGER_NAME_);
@@ -23,9 +27,14 @@ void init_logger() {
 int main(int argc, char** argv) {
   init_logger();
 
-  base::core::InputManager input_manager;
+  std::shared_ptr<utils::EventHandler> event_handler(new utils::EventHandler);
+
+  base::core::InputManager input_manager(event_handler);
+  base::core::UserActivityManager activity_manager(event_handler);
   // std::thread(&base::core::InputManager::run, &input_manager).join();
   input_manager.run();
+  activity_manager.run();
+
 
   MSG msg;
   while (GetMessage(&msg, NULL, 0, 0)) {

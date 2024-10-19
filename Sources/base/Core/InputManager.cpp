@@ -8,7 +8,7 @@
 
 namespace base::core {
 
-  InputManager::InputManager() {
+  InputManager::InputManager(std::weak_ptr<utils::EventHandler> event_handler) {
     DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
     LOG_INFO("called");
 
@@ -16,6 +16,10 @@ namespace base::core {
 
     _handlers.emplace_back(&platform::handlers::KeyboardInputHandler::instance());
     _handlers.emplace_back(&platform::handlers::MouseInputHandler::instance());
+
+    for (auto& it : _handlers) {
+      it->set_event_handler(event_handler);
+    }
   }
 
   InputManager::~InputManager() {

@@ -101,6 +101,7 @@ namespace platform::handlers {
       auto key_info = (KBDLLHOOKSTRUCT*)l_param;
       if (key_info) {
         LOG_INFO("Key code = {}; scan code = {}; key status = {}", key_info->vkCode, key_info->scanCode, w_param);
+        instance()._event_handler->notify(utils::ISubscriber::Event::UserInteractionHandled);
       }
       else {
         LOG_ERROR("Key info could not be read");

@@ -9,7 +9,7 @@ namespace base::core {
 
   class InputManager {
   public:
-    InputManager();
+    InputManager(std::weak_ptr<utils::EventHandler> event_handler);
     ~InputManager();
 
     void run();
