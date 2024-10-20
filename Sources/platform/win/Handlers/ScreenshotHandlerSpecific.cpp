@@ -7,60 +7,9 @@
 #include <windows.h>
 #include <gdiplus.h>
 #include <iostream>
+#include <vector>
 
 namespace platform::handlers {
-
-  void InitializeGDIPlus()
-  {
-    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
-    LOG_INFO("called");
-
-    Gdiplus::GdiplusStartupInput gdiplusStartupInput;
-    ULONG_PTR gdiplusToken;
-    Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, nullptr);
-  }
-
-  // Сохранение скриншота в файл
-  void SaveBitmapToFile(HBITMAP hBitmap, const WCHAR* filePath)
-  {
-    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
-    LOG_INFO("called");
-
-    Gdiplus::Bitmap bitmap(hBitmap, nullptr);
-    CLSID pngClsid;
-    CLSIDFromString(L"{557CF406-1A04-11D3-9A73-0000F81EF32E}", &pngClsid);
-    bitmap.Save(filePath, &pngClsid, nullptr);
-  }
-
-  // Функция для захвата скриншота и сохранения его в файл
-  void CaptureScreenAndSaveToFile(const WCHAR* filePath)
-  {
-    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
-    LOG_INFO("called");
-
-    // Получаем размеры экрана
-    int screenX = GetSystemMetrics(SM_CXSCREEN);
-    int screenY = GetSystemMetrics(SM_CYSCREEN);
-
-    // Получаем дескриптор окна рабочего стола
-    HDC hScreenDC = GetDC(nullptr);
-    HDC hMemoryDC = CreateCompatibleDC(hScreenDC);
-
-    // Создаем совместимое с экраном изображение
-    HBITMAP hBitmap = CreateCompatibleBitmap(hScreenDC, screenX, screenY);
-    SelectObject(hMemoryDC, hBitmap);
-
-    // Копируем данные с экрана в память
-    BitBlt(hMemoryDC, 0, 0, screenX, screenY, hScreenDC, 0, 0, SRCCOPY);
-
-    // Сохраняем изображение в файл
-    SaveBitmapToFile(hBitmap, filePath);
-
-    // Освобождаем ресурсы
-    DeleteObject(hBitmap);
-    DeleteDC(hMemoryDC);
-    ReleaseDC(nullptr, hScreenDC);
-  }
 
   ScreenshotHandlerSpecific::ScreenshotHandlerSpecific() {
     DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
@@ -73,10 +22,84 @@ namespace platform::handlers {
     DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
     LOG_INFO("called");
 
-    // Захват экрана и сохранение скриншота
-    CaptureScreenAndSaveToFile(output_name.c_str());
+    int screen_x = GetSystemMetrics(SM_CXSCREEN);
+    int screen_y = GetSystemMetrics(SM_CYSCREEN);
+
+    HDC screen_dc = GetDC(nullptr);
+    HDC memory_dc = CreateCompatibleDC(screen_dc);
+
+    HBITMAP bitmap = CreateCompatibleBitmap(screen_dc, screen_x, screen_y);
+    SelectObject(memory_dc, bitmap);
+
+    // copy data from the screen into the virtual memory;
+    BitBlt(memory_dc, 0, 0, screen_x, screen_y, screen_dc, 0, 0, SRCCOPY);
+
+    save_bitmap_to_file(bitmap, output_name);
+
+    // free descriptors and resources;
+    DeleteObject(bitmap);
+    DeleteDC(memory_dc);
+    ReleaseDC(nullptr, screen_dc);
 
     return true;
+  }
+
+  void ScreenshotHandlerSpecific::InitializeGDIPlus()
+  {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+    LOG_INFO("called");
+
+    Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+    ULONG_PTR gdiplusToken;
+    Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, nullptr);
+  }
+
+  void ScreenshotHandlerSpecific::save_bitmap_to_file(HBITMAP bitmap, const std::wstring& filePath)
+  {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+    LOG_INFO("called");
+
+    auto format = get_mime_type(filePath);
+
+    CLSID clsid;
+    if (get_encoder_clsid(format.c_str(), clsid) != -1)
+    {
+      Gdiplus::Bitmap gdi_bitmap(bitmap, nullptr);
+      gdi_bitmap.Save(filePath.c_str(), &clsid, nullptr);
+    }
+    else
+    {
+      LOG_ERROR("Impossible to find coder for the {} format", utils::to_string(format));
+    }
+  }
+
+  int ScreenshotHandlerSpecific::get_encoder_clsid(const std::wstring& format, CLSID& clsid)
+  {
+    UINT codecs_count = 0;
+    UINT codecs_array_size = 0;
+    Gdiplus::ImageCodecInfo* imager_codec_info = nullptr;
+
+    Gdiplus::GetImageEncodersSize(&codecs_count, &codecs_array_size);
+
+    if (codecs_array_size != 0) {
+      std::vector<Gdiplus::ImageCodecInfo> imager_codec_info(codecs_array_size);
+      Gdiplus::GetImageEncoders(codecs_count, codecs_array_size, imager_codec_info.data());
+
+      for (auto& it : imager_codec_info) {
+        if (wcscmp(it.MimeType, format.c_str()) == 0)
+        {
+          clsid = it.Clsid;
+          return 0;
+        }
+      }
+    }
+
+    return -1;
+  }
+
+  std::wstring ScreenshotHandlerSpecific::get_mime_type(const std::wstring& file) {
+    auto extension_index = file.find_last_of(base::configuration::config::WEXTENSION_SEPARATOR);
+    return std::wstring{L"image/"} + file.substr(extension_index + 1);
   }
 
 } // platform::handlers

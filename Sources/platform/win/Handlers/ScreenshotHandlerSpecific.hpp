@@ -13,10 +13,16 @@ namespace platform::handlers {
   class ScreenshotHandlerSpecific : public base::handlers::ScreenshotHandler {
   public:
     ScreenshotHandlerSpecific();
-    
+
     bool take_screenshot(std::int32_t monitor, const std::wstring& output_name) override;
 
   private:
+    void InitializeGDIPlus();
+    void save_bitmap_to_file(HBITMAP hBitmap, const std::wstring& filePath);
+    int get_encoder_clsid(const std::wstring& format, CLSID& clsid);
+    std::wstring get_mime_type(const std::wstring& file);
+
+
     // /**
     //  * @brief make screen capture and save it into RAM;
     //  *
