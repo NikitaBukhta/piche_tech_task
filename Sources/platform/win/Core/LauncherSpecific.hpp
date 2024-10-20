@@ -8,6 +8,9 @@ namespace platform::core {
   class LauncherSpecific : public base::core::Launcher {
   public:
     std::int32_t run() override;
+
+  private:
+    void init_gdi_plus();
   };
 
 } // platform::handlers

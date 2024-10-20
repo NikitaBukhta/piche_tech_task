@@ -12,33 +12,25 @@
 #include <memory>
 #include <thread>
 
+#include <objidl.h>   // to escape the error: 'PROPID' has not been declared when gdiplus.h is included;
+#include <gdiplus.h>
+
 namespace platform::core {
 
   std::int32_t LauncherSpecific::run() {
     DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_);
 
-    std::shared_ptr<utils::EventHandler> event_handler(new utils::EventHandler);
+    init_gdi_plus();
+    return Launcher::run();
+  }
 
-    platform::core::InputManagerSpecific input_manager(event_handler);
-    base::core::UserActivityManager activity_manager(event_handler);
-    base::core::ScreenshotManager screenshot_manager;
+  void LauncherSpecific::init_gdi_plus() {
+    DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
+    LOG_INFO("called");
 
-    std::thread input_thread(&base::core::InputManager::run, &input_manager);
-    std::thread activity_thread(&base::core::UserActivityManager::run, &activity_manager);
-    std::thread screenshot_thread(&base::core::ScreenshotManager::run, &screenshot_manager);
-
-    LOG_INFO("Closing the program");
-
-    input_manager.stop();
-    activity_manager.stop();
-
-    if (input_thread.joinable()) input_thread.join();
-    if (activity_thread.joinable()) activity_thread.join();
-    if (screenshot_thread.joinable()) screenshot_thread.join();
-
-    LOG_INFO("Closed finished");
-
-    return 0;
+    Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+    ULONG_PTR gdiplusToken;
+    Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, nullptr);
   }
 
 } // platform::handlers

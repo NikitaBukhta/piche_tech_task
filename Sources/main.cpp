@@ -1,4 +1,4 @@
-#include "Core/Launcher.hpp"
+#include "Core/LauncherSpecific.hpp"
 
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/basic_file_sink.h"
@@ -24,6 +24,6 @@ void init_logger() {
 int main(int argc, char** argv) {
   init_logger();
 
-  std::unique_ptr<base::core::Launcher> launcher(new base::core::Launcher);
+  std::unique_ptr<base::core::Launcher> launcher(new platform::core::LauncherSpecific);
   return launcher->run();
 }

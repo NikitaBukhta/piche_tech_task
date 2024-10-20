@@ -2,6 +2,7 @@
 #define __TECHTASK_SOURCES_BASE_CORE_SCREENSHOTMANAGER_HPP__
 
 #include "Handlers/ScreenshotHandler.hpp"
+#include "Modifiers/ImageModifier.hpp"
 
 #include <memory>
 
@@ -15,6 +16,7 @@ namespace base::core {
   
   private:
     std::unique_ptr<handlers::ScreenshotHandler> _screenshot_handler;
+    std::unique_ptr<modifiers::ImageModifier> _image_modifier;
   };
 
 } // base::core

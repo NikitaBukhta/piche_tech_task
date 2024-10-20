@@ -28,7 +28,6 @@ set(CPP_SOURCES
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/ActivityHandler.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/InputHandler.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/ScreenshotHandler.cpp
-  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Modifiers/ImageModifier.cpp
   # ---- OS SPECIFIC
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Core/InputManagerSpecific.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Core/LauncherSpecific.cpp
@@ -36,6 +35,7 @@ set(CPP_SOURCES
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/KeyboardInputHandler.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/MouseInputHandler.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/ScreenshotHandlerSpecific.cpp
+  ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Modifiers/ImageModifierSpecific.cpp
 )
 
 add_executable(
