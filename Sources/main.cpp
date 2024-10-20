@@ -4,9 +4,9 @@
  * @brief Init logger and start the launcher;
  * @version 0.1
  * @date 2024-10-21
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #include "Core/LauncherSpecific.hpp"
