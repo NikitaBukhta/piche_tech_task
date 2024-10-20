@@ -5,11 +5,10 @@
 #include "Configuration/config.hpp"
 #include "logger.hpp"
 
+#include <objidl.h> // to escape the error: 'PROPID' has not been declared when gdiplus.h is included;
 #include <gdiplus.h>
 #include <iostream>
-#include <objidl.h> // to escape the error: 'PROPID' has not been declared when gdiplus.h is included;
 #include <vector>
-#include <windows.h>
 
 namespace platform::handlers {
 

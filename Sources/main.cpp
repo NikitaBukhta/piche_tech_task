@@ -26,8 +26,8 @@ void init_logger() {
   auto file_sink = spdlog::basic_logger_mt(
       _INIT_LOGGER_NAME_, base::configuration::config::LOG_FILE_NAME, true);
   file_sink->set_pattern(log_pattern);
-  file_sink->set_level(spdlog::level::debug);
-  file_sink->flush_on(spdlog::level::debug);
+  file_sink->set_level(spdlog::level::trace);
+  file_sink->flush_on(spdlog::level::err);
 
   DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_);
   LOG_INFO("logger inited");

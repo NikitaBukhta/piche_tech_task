@@ -16,8 +16,8 @@
 
 #include "Modifiers/ImageModifier.hpp"
 
-#include <gdiplus.h>
 #include <objidl.h> // to escape the error: 'PROPID' has not been declared when gdiplus.h is included;
+#include <gdiplus.h>
 #include <windef.h>
 
 #include <memory>
