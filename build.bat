@@ -1,5 +1,5 @@
 @echo off
-REM Проверяем, передан ли первый аргумент
+REM
 IF "%1"=="" (
     set threads_count=1
 ) ELSE (
