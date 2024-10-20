@@ -36,9 +36,8 @@ void ActivityHandlerSpecific::start_timer() {
   DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
   LOG_TRACE("called");
 
-  // _timer_id = timeSetEvent(base::configuration::config::ACTIVITY_PERIOD_MS,
-  // 0, on_user_inactive, 0, TIME_ONESHOT);
-  _timer_id = timeSetEvent(5000, 0, on_user_inactive, 0, TIME_ONESHOT);
+  _timer_id = timeSetEvent(base::configuration::config::ACTIVITY_PERIOD_MS, 0,
+                           on_user_inactive, 0, TIME_ONESHOT);
 
   if (!_user_is_active) {
     LOG_INFO("user is active again!");

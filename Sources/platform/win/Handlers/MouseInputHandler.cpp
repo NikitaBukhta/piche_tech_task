@@ -9,14 +9,6 @@
 
 namespace platform::handlers {
 
-/*
- * COMMON methods STARTS;
- */
-
-/*
- * PUBLIC section STARTS;
- */
-
 MouseInputHandler::~MouseInputHandler() {
   DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
   LOG_INFO("called");
@@ -47,31 +39,7 @@ void MouseInputHandler::unhook() {
   _hook = 0;
 }
 
-/*
- * PUBLIC section ENDS;
- */
-
-/*
- * PRIVATE section STARTS;
- */
-
 MouseInputHandler::MouseInputHandler() : _hook{0} {}
-
-/*
- * PRIVATE section ENDS;
- */
-
-/*
- * COMMON methods ENDS;
- */
-
-/*
- * STATIC methods STARTS;
- */
-
-/*
- * PUBLIC section STARTS;
- */
 
 MouseInputHandler &MouseInputHandler::instance() {
   DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
@@ -81,14 +49,6 @@ MouseInputHandler &MouseInputHandler::instance() {
 
   return *instance;
 }
-
-/*
- * PUBLIC section ENDS;
- */
-
-/*
- * PRIVATE section STARTS;
- */
 
 LRESULT CALLBACK MouseInputHandler::handle_hook(int ncode, WPARAM w_param,
                                                 LPARAM l_param) {
@@ -110,13 +70,5 @@ LRESULT CALLBACK MouseInputHandler::handle_hook(int ncode, WPARAM w_param,
 
   return CallNextHookEx(instance()._hook, ncode, w_param, l_param);
 }
-
-/*
- * PRIVATE section ENDS;
- */
-
-/*
- * STATIC methods ENDS;
- */
 
 } // namespace platform::handlers

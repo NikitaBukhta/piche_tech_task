@@ -1,6 +1,17 @@
 #ifndef __TECHTASK_SOURCES_BASE_CONFIGURATION_CONFIG_HPP__
 #define __TECHTASK_SOURCES_BASE_CONFIGURATION_CONFIG_HPP__
 
+/**
+ * @file config.hpp
+ * @author Mykyta Bukhta (nikita.bukhta.dev@gmail.com)
+ * @brief contain all constant values used across all project;
+ * @version 0.1
+ * @date 2024-10-21
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #define _INIT_LOGGER_NAME_ "file_logger_output"
 
 #include <cinttypes>

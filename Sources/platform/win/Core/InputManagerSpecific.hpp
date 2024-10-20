@@ -1,6 +1,19 @@
 #ifndef __TECHTASK_SOURCES_WIN_CORE_INPUTMANAGERSPECIFIC_HPP__
 #define __TECHTASK_SOURCES_WIN_CORE_INPUTMANAGERSPECIFIC_HPP__
 
+/**
+ * @file InputManagerSpecific.hpp
+ * @author Mykyta Bukhta (nikita.bukhta.dev@gmail.com)
+ * @brief Declaration of InputManagerSpecific class. This class has
+ * specific implemetation for WinOS. For more detail of class specialization
+ * refer to base/Core/Launcher.hpp.
+ * @version 0.1
+ * @date 2024-10-21
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #include "Core/InputManager.hpp"
 
 #include <windef.h>

@@ -9,14 +9,6 @@
 
 namespace platform::handlers {
 
-/*
- * COMMON methods STARTS;
- */
-
-/*
- * PUBLIC section STARTS;
- */
-
 KeyboardInputHandler::~KeyboardInputHandler() {
   DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
   LOG_INFO("called");
@@ -46,34 +38,10 @@ void KeyboardInputHandler::unhook() {
   _hook = 0;
 }
 
-/*
- * PUBLIC section ENDS;
- */
-
-/*
- * PRIVATE section STARTS;
- */
-
 KeyboardInputHandler::KeyboardInputHandler() : _hook{0} {
   DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
   LOG_INFO("called");
 }
-
-/*
- * PRIVATE section ENDS;
- */
-
-/*
- * COMMON methods ENDS;
- */
-
-/*
- * STATIC methods STARTS;
- */
-
-/*
- * PUBLIC section STARTS;
- */
 
 KeyboardInputHandler &KeyboardInputHandler::instance() {
   DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
@@ -84,14 +52,6 @@ KeyboardInputHandler &KeyboardInputHandler::instance() {
 
   return *instance;
 }
-
-/*
- * PUBLIC section ENDS;
- */
-
-/*
- * PRIVATE section STARTS;
- */
 
 LRESULT CALLBACK KeyboardInputHandler::handle_hook(int ncode, WPARAM w_param,
                                                    LPARAM l_param) {
@@ -113,13 +73,5 @@ LRESULT CALLBACK KeyboardInputHandler::handle_hook(int ncode, WPARAM w_param,
 
   return CallNextHookEx(instance()._hook, ncode, w_param, l_param);
 }
-
-/*
- * PRIVATE section ENDS;
- */
-
-/*
- * STATIC methods ENDS;
- */
 
 } // namespace platform::handlers

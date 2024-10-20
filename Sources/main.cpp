@@ -1,3 +1,14 @@
+/**
+ * @file main.cpp
+ * @author Mykyta Bukhta (nikita.bukhta.dev@domain.com)
+ * @brief Init logger and start the launcher;
+ * @version 0.1
+ * @date 2024-10-21
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #include "Core/LauncherSpecific.hpp"
 
 #include "spdlog/sinks/basic_file_sink.h"

@@ -1,6 +1,17 @@
 #ifndef __TECHTASK_SOURCES_UTILS_LOGGER_HPP__
 #define __TECHTASK_SOURCES_UTILS_LOGGER_HPP__
 
+/**
+ * @file logger.hpp
+ * @author Mykyta Bukhta (nikita.bukhta.dev@gmail.com)
+ * @brief Wrapper of spdlog to make logging easier to use;
+ * @version 0.1
+ * @date 2024-10-20
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #include "spdlog/spdlog.h"
 
 #include <string>
