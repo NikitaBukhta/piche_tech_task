@@ -8,17 +8,17 @@
 
 namespace base::core {
 
-  class ScreenshotManager {
-  public:
-    ScreenshotManager();
+class ScreenshotManager {
+public:
+  ScreenshotManager();
 
-    void run();
-  
-  private:
-    std::unique_ptr<handlers::ScreenshotHandler> _screenshot_handler;
-    std::unique_ptr<modifiers::ImageModifier> _image_modifier;
-  };
+  void run();
 
-} // base::core
+private:
+  std::unique_ptr<handlers::ScreenshotHandler> _screenshot_handler;
+  std::unique_ptr<modifiers::ImageModifier> _image_modifier;
+};
+
+} // namespace base::core
 
 #endif // __TECHTASK_SOURCES_BASE_CORE_SCREENSHOTMANAGER_HPP__

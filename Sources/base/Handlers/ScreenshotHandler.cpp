@@ -1,5 +1,3 @@
 #include "ScreenshotHandler.hpp"
 
-namespace base::handlers {
-
-} // base::handlers
+namespace base::handlers {} // namespace base::handlers

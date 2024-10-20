@@ -5,14 +5,14 @@
 
 namespace platform::core {
 
-  class LauncherSpecific : public base::core::Launcher {
-  public:
-    std::int32_t run() override;
+class LauncherSpecific : public base::core::Launcher {
+public:
+  std::int32_t run() override;
 
-  private:
-    void init_gdi_plus();
-  };
+private:
+  void init_gdi_plus();
+};
 
-} // platform::handlers
+} // namespace platform::core
 
 #endif // __TECHTASK_SOURCES_WIN_CORE_LAUNCHERSPECIFIC_HPP__

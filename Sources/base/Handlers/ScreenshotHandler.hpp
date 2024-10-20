@@ -6,11 +6,12 @@
 
 namespace base::handlers {
 
-  class ScreenshotHandler {
-  public:
-    virtual bool take_screenshot(std::int32_t monitor, const std::wstring& output_name) = 0;
-  };
+class ScreenshotHandler {
+public:
+  virtual bool take_screenshot(std::int32_t monitor,
+                               const std::wstring &output_name) = 0;
+};
 
-} // base::handlers
+} // namespace base::handlers
 
 #endif // __TECHTASK_SOURCES_BASE_HANDLER_SCREENSHOTHANDLER_HPP__

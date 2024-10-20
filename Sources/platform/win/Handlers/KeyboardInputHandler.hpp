@@ -4,10 +4,12 @@
 /**
  * @file KeyboardInputHandler.hpp
  * @author Mykyta Bukhta (nikita.bukhta.dev@gmail.com)
- * @brief This class is created to handle any user keyboard input and do some action based on input.
- *  According to the specification, current behavior is described as ouput the user input to the logs.
- *  Current class is implemeneted with Singleton pattern due to WinAPI callback function need to be static
- * or independed from the class. To keep the OOP princeples and structures, this pattern is used.
+ * @brief This class is created to handle any user keyboard input and do some
+ * action based on input. According to the specification, current behavior is
+ * described as ouput the user input to the logs. Current class is implemeneted
+ * with Singleton pattern due to WinAPI callback function need to be static or
+ * independed from the class. To keep the OOP princeples and structures, this
+ * pattern is used.
  * @version 0.1
  * @date 2024-10-19
  *
@@ -17,49 +19,50 @@
 
 #include "Handlers/InputHandler.hpp"
 
-#include <windef.h>
 #include <cinttypes>
+#include <windef.h>
 
 namespace platform::handlers {
 
-  class KeyboardInputHandler : public base::handlers::InputHandler {
-  public:
-    ~KeyboardInputHandler();
-    KeyboardInputHandler(const KeyboardInputHandler& other) = delete;
-    KeyboardInputHandler(KeyboardInputHandler&& other) = delete;
+class KeyboardInputHandler : public base::handlers::InputHandler {
+public:
+  ~KeyboardInputHandler();
+  KeyboardInputHandler(const KeyboardInputHandler &other) = delete;
+  KeyboardInputHandler(KeyboardInputHandler &&other) = delete;
 
-    KeyboardInputHandler& operator=(const KeyboardInputHandler& other) = delete;
-    KeyboardInputHandler& operator=(KeyboardInputHandler&& other) = delete;
+  KeyboardInputHandler &operator=(const KeyboardInputHandler &other) = delete;
+  KeyboardInputHandler &operator=(KeyboardInputHandler &&other) = delete;
 
-    void hook() override;
-    void unhook() override;
+  void hook() override;
+  void unhook() override;
 
-    static KeyboardInputHandler& instance();
+  static KeyboardInputHandler &instance();
 
-  private:
-    KeyboardInputHandler();
+private:
+  KeyboardInputHandler();
 
-    /**
-     * @brief
-     *
-     * @param ncode - should be handled or not
-     * @param w_param - event type
-     * @param l_param - memory address with information about
-     * typedef struct tagKBDLLHOOKSTRUCT {
-     *  DWORD     vkCode;
-     *  DWORD     scanCode;
-     *  DWORD     flags;
-     *  DWORD     time;
-     *  ULONG_PTR dwExtraInfo;
-     * } KBDLLHOOKSTRUCT, *PKBDLLHOOKSTRUCT;
-     * @return LRESULT
-     */
-    static LRESULT CALLBACK handle_hook(int ncode, WPARAM w_param, LPARAM l_param);
+  /**
+   * @brief
+   *
+   * @param ncode - should be handled or not
+   * @param w_param - event type
+   * @param l_param - memory address with information about
+   * typedef struct tagKBDLLHOOKSTRUCT {
+   *  DWORD     vkCode;
+   *  DWORD     scanCode;
+   *  DWORD     flags;
+   *  DWORD     time;
+   *  ULONG_PTR dwExtraInfo;
+   * } KBDLLHOOKSTRUCT, *PKBDLLHOOKSTRUCT;
+   * @return LRESULT
+   */
+  static LRESULT CALLBACK handle_hook(int ncode, WPARAM w_param,
+                                      LPARAM l_param);
 
-  private:
-    HHOOK _hook;
-  };
+private:
+  HHOOK _hook;
+};
 
-} // platform::handlers
+} // namespace platform::handlers
 
 #endif // __TECHTASK_SOURCES_WIN_HANDLER_KEYBOARDINPUTHANDLER_HPP__

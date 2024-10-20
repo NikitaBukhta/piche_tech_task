@@ -3,22 +3,22 @@
 
 #include "Handlers/InputHandler.hpp"
 
-#include <vector>
 #include <memory>
+#include <vector>
 namespace base::core {
 
-  class InputManager {
-  public:
-    InputManager(std::weak_ptr<utils::EventHandler> event_handler);
-    ~InputManager();
+class InputManager {
+public:
+  InputManager(std::weak_ptr<utils::EventHandler> event_handler);
+  ~InputManager();
 
-    virtual void run();
-    virtual void stop();
+  virtual void run();
+  virtual void stop();
 
-  private:
-    std::vector<handlers::InputHandler*> _handlers;
-  };
+private:
+  std::vector<handlers::InputHandler *> _handlers;
+};
 
-} // base::core
+} // namespace base::core
 
 #endif // __TECHTASK_SOURCES_BASE_CORE_INPUTMANAGER_HPP__

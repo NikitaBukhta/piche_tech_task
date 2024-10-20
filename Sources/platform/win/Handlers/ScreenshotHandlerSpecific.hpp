@@ -5,21 +5,22 @@
 
 #include <windef.h>
 
-#include <string>
 #include <cinttypes>
+#include <string>
 
 namespace platform::handlers {
 
-  class ScreenshotHandlerSpecific : public base::handlers::ScreenshotHandler {
-  public:
-    ScreenshotHandlerSpecific();
+class ScreenshotHandlerSpecific : public base::handlers::ScreenshotHandler {
+public:
+  ScreenshotHandlerSpecific();
 
-    bool take_screenshot(std::int32_t monitor, const std::wstring& output_name) override;
+  bool take_screenshot(std::int32_t monitor,
+                       const std::wstring &output_name) override;
 
-  private:
-    void save_bitmap_to_file(HBITMAP bitmap, const std::wstring& file_name);
-  };
+private:
+  void save_bitmap_to_file(HBITMAP bitmap, const std::wstring &file_name);
+};
 
-} // platform::handlers
+} // namespace platform::handlers
 
 #endif // __TECHTASK_SOURCES_WIN_HANDLER_SCREENSHOTHANDLERSPECIFIC_HPP__

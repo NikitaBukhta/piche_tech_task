@@ -6,17 +6,17 @@
 #include <memory>
 namespace base::core {
 
-  class UserActivityManager {
-  public:
-    UserActivityManager(std::weak_ptr<utils::EventHandler> event_handler);
+class UserActivityManager {
+public:
+  UserActivityManager(std::weak_ptr<utils::EventHandler> event_handler);
 
-    void run();
-    void stop();
+  void run();
+  void stop();
 
-  private:
-    handlers::ActivityHandler* _activity_handler;
-  };
+private:
+  handlers::ActivityHandler *_activity_handler;
+};
 
-} // base::core
+} // namespace base::core
 
 #endif // __TECHTASK_SOURCES_BASE_CORE_USERACTIVITYMANAGER_HPP__

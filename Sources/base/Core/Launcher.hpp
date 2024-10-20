@@ -5,11 +5,11 @@
 
 namespace base::core {
 
-  class Launcher {
-  public:
-    virtual std::int32_t run();
-  };
+class Launcher {
+public:
+  virtual std::int32_t run();
+};
 
-} // base::core
+} // namespace base::core
 
 #endif // __TECHTASK_SOURCES_BASE_CORE_LAUNCHER_HPP__

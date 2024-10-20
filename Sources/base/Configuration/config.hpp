@@ -12,7 +12,8 @@ const std::uint8_t SEC_IN_MIN = 60;
 const std::uint16_t MS_IN_SEC = 1000;
 const std::int32_t MODIFIED_NEW_IMG_WIDTH = 800;
 const std::int32_t MODIFIED_NEW_IMG_HEIGHT = 600;
-constexpr std::uint32_t ACTIVITY_PERIOD_MS = MS_IN_SEC * SEC_IN_MIN * ACTIVITY_PERIOD_MINUTES;
+constexpr std::uint32_t ACTIVITY_PERIOD_MS =
+    MS_IN_SEC * SEC_IN_MIN * ACTIVITY_PERIOD_MINUTES;
 
 const wchar_t WEXTENSION_SEPARATOR = L'.';
 
@@ -20,6 +21,6 @@ const std::string LOG_FILE_NAME = "activity_logs.txt";
 const std::wstring SCREENSHOT_COMMON_NAME = L"screenshot.bmp";
 const std::wstring CONVERTED_IMAGE_NAME = L"output.bmp";
 
-} // base::configuration::config
+} // namespace base::configuration::config
 
 #endif // __TECHTASK_SOURCES_BASE_CONFIGURATION_CONFIG_HPP__
