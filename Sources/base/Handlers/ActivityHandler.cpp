@@ -25,7 +25,7 @@ namespace base::handlers {
 
   void ActivityHandler::update(Event event) {
     DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
-    LOG_INFO("event = {}", static_cast<std::int16_t>(event));
+    LOG_TRACE("event = {}", static_cast<std::int16_t>(event));
 
     switch (event) {
       case Event::UserInteractionHandled:
@@ -39,7 +39,7 @@ namespace base::handlers {
 
   void ActivityHandler::on_user_interaction_handled() {
     DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
-    LOG_DEBUG("called");
+    LOG_TRACE("called");
 
     stop_timer();
     start_timer();

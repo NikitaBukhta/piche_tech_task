@@ -5,9 +5,9 @@
 
 namespace base::core {
 
-  class Laucnher {
+  class Launcher {
   public:
-    virtual std::int32_t run() = 0;
+    virtual std::int32_t run();
   };
 
 } // base::core

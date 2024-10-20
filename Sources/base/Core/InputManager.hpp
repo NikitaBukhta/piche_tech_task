@@ -12,8 +12,8 @@ namespace base::core {
     InputManager(std::weak_ptr<utils::EventHandler> event_handler);
     ~InputManager();
 
-    void run();
-    void stop();
+    virtual void run();
+    virtual void stop();
 
   private:
     std::vector<handlers::InputHandler*> _handlers;

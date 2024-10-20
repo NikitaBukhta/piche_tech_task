@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <unordered_map>
+#include <mutex>
 
 namespace utils {
 
@@ -15,6 +16,7 @@ public:
 
 private:
   std::unordered_map<ISubscriber::Event, std::vector<ISubscriber*>> _event_subs;
+  std::mutex _event_subs_mutex;
 };
 
 } // utils

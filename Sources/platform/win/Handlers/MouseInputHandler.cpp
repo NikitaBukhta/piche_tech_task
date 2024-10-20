@@ -97,7 +97,7 @@ namespace platform::handlers {
     if (ncode >= 0) {
       auto mouse_info = (MSLLHOOKSTRUCT*)l_param;
       if (mouse_info) {
-        LOG_INFO("Mouse coords = ({}; {}), event {}", mouse_info->pt.x, mouse_info->pt.y, w_param);
+        LOG_TRACE("Mouse coords = ({}; {}), event {}", mouse_info->pt.x, mouse_info->pt.y, w_param);
         instance()._event_handler->notify(utils::ISubscriber::Event::UserInteractionHandled);
       }
       else {

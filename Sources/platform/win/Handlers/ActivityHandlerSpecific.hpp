@@ -29,6 +29,7 @@ namespace platform::handlers {
 
   private:
     MMRESULT _timer_id;
+    bool _user_is_active;
   };
 
 } // platform::handlers

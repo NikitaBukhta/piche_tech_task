@@ -5,7 +5,7 @@
 
 namespace platform::core {
 
-  class LauncherSpecific : public base::core::Laucnher {
+  class LauncherSpecific : public base::core::Launcher {
   public:
     std::int32_t run() override;
   };

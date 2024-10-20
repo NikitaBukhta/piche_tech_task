@@ -20,16 +20,17 @@ set(CPP_SOURCES
   # ---- UTILITIES
   ${CPP_SOURCE_PATH}/${UTILITIES_FOLDER_NAME}/EventHandler.cpp
   ${CPP_SOURCE_PATH}/${UTILITIES_FOLDER_NAME}/logger.cpp
-  ${CPP_SOURCE_PATH}/${UTILITIES_FOLDER_NAME}/ThreadPool.cpp
   # ---- BASE FILES
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/InputManager.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/ScreenshotManager.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/UserActivityManager.cpp
+  ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/Launcher.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/ActivityHandler.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/InputHandler.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/ScreenshotHandler.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Modifiers/ImageModifier.cpp
   # ---- OS SPECIFIC
+  ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Core/InputManagerSpecific.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Core/LauncherSpecific.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/ActivityHandlerSpecific.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/KeyboardInputHandler.cpp

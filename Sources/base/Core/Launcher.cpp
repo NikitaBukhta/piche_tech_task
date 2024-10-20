@@ -1,4 +1,4 @@
-#include "LauncherSpecific.hpp"
+#include "Launcher.hpp"
 
 #include "Core/InputManagerSpecific.hpp"
 #include "Core/UserActivityManager.hpp"
@@ -12,9 +12,9 @@
 #include <memory>
 #include <thread>
 
-namespace platform::core {
+namespace base::core {
 
-  std::int32_t LauncherSpecific::run() {
+  std::int32_t Launcher::run() {
     DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_);
 
     std::shared_ptr<utils::EventHandler> event_handler(new utils::EventHandler);
@@ -29,6 +29,8 @@ namespace platform::core {
 
     LOG_INFO("Closing the program");
 
+    while(true) {}; // TODO: tmp locker;
+
     input_manager.stop();
     activity_manager.stop();
 
@@ -41,4 +43,4 @@ namespace platform::core {
     return 0;
   }
 
-} // platform::handlers
+} // base::core
