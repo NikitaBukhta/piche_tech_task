@@ -20,6 +20,7 @@ set(CPP_SOURCES
   # ---- UTILITIES
   ${CPP_SOURCE_PATH}/${UTILITIES_FOLDER_NAME}/EventHandler.cpp
   ${CPP_SOURCE_PATH}/${UTILITIES_FOLDER_NAME}/logger.cpp
+  ${CPP_SOURCE_PATH}/${UTILITIES_FOLDER_NAME}/ThreadPool.cpp
   # ---- BASE FILES
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/InputManager.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Core/ScreenshotManager.cpp
@@ -29,6 +30,7 @@ set(CPP_SOURCES
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Handlers/ScreenshotHandler.cpp
   ${CPP_SOURCE_PATH}/${BASE_FOLDER_NAME}/Modifiers/ImageModifier.cpp
   # ---- OS SPECIFIC
+  ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Core/LauncherSpecific.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/ActivityHandlerSpecific.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/KeyboardInputHandler.cpp
   ${CPP_SOURCE_PATH}/${OS_FOLDER_NAME}/Handlers/MouseInputHandler.cpp

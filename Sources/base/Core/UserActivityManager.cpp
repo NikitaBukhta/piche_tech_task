@@ -22,4 +22,8 @@ namespace base::core {
     _activity_handler->run();
   }
 
+  void UserActivityManager::stop() {
+    _activity_handler->stop();
+  }
+
 } // base::core

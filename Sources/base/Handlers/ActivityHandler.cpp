@@ -19,6 +19,10 @@ namespace base::handlers {
     start_timer();
   }
 
+  void ActivityHandler::stop() {
+    stop_timer();
+  }
+
   void ActivityHandler::update(Event event) {
     DECLARE_TAG_SCOPE(_INIT_LOGGER_NAME_)
     LOG_INFO("event = {}", static_cast<std::int16_t>(event));

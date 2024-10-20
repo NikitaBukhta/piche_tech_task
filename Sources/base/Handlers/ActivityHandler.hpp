@@ -13,6 +13,7 @@ namespace base::handlers {
     void set_event_handler(std::weak_ptr<utils::EventHandler> val);
     void init();
     void run();
+    void stop();
 
     void update(Event event) override;
 

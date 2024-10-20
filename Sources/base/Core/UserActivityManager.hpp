@@ -11,6 +11,7 @@ namespace base::core {
     UserActivityManager(std::weak_ptr<utils::EventHandler> event_handler);
 
     void run();
+    void stop();
 
   private:
     handlers::ActivityHandler* _activity_handler;
