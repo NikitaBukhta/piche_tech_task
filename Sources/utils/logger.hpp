@@ -3,6 +3,8 @@
 
 #include "spdlog/spdlog.h"
 
+#include <string>
+
 // Макрос для объявления логгера в текущем скоупе
 #ifndef DECLARE_TAG_SCOPE 
 #define DECLARE_TAG_SCOPE(domain) \
@@ -39,5 +41,11 @@
 #define LOG_CRITICAL(...) \
   SPDLOG_LOGGER_CRITICAL(logger, __VA_ARGS__)
 #endif // LOG_CRITICAL
+
+namespace utils {
+  
+  std::string to_string(const std::wstring& wstr);
+
+}
 
 #endif // __TECHTASK_SOURCES_UTILS_LOGGER_HPP__
