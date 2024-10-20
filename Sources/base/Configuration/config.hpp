@@ -12,7 +12,10 @@ const std::uint8_t SEC_IN_MIN = 60;
 const std::uint16_t MS_IN_SEC = 1000;
 constexpr std::uint32_t ACTIVITY_PERIOD_MS = MS_IN_SEC * SEC_IN_MIN * ACTIVITY_PERIOD_MINUTES;
 
+const wchar_t WEXTENSION_SEPARATOR = L'.';
+
 const std::string LOG_FILE_NAME = "activity_logs.txt";
+const std::wstring SCREENSHOT_COMMON_NAME = L"screenshot.bmp";
 
 } // base::configuration::config
 
